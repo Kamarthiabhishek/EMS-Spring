@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:#ADD8E6;    
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            opacity:0.8;
+            
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select{
+        
+        	width: 380px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-shadow: 1px 2px 2px black;
+        
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: 360px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-shadow: 1px 2px 2px black;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-left:145px;
+            box-shadow: 1px 2px 2px black;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Registration</h2>
+        <form th:action="@{/register/admin}" th:object="${admin}" method="post">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" th:field="*{first_name}" />
+            
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" th:field="*{last_name}" required/>
+            
+            <label for="gender">Gender:</label>
+			<select id="gender" name="gender" th:field="*{gender}">
+				<option value="1">Select Gender</option>
+				<option value="2">Male</option>
+				<option value="3">Female</option>
+				<option value="4">Other</option>
+			</select> 
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" required/>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}" required/>
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" th:field="*{address}" required/>
+            
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" th:field="*{dob}" required/>
+            
+            <div th:if="${#fields.hasAnyErrors()}"
+				th:class="${#fields.hasAnyErrors()} ? 'error'">
+				<ul>
+					<li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+				</ul>
+			</div>
+            
+            <button type="submit">Register</button>
+        </form>
+        
+        <a th:href="@{/}"></a>
+    </div>
+</body>
+</html>

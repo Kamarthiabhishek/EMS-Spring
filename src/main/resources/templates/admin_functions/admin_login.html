@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>employee Management System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<style type="text/css">
+body {
+	font-family: "Poppins", sans-serif;
+    font-weight: 300;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+	background-image:url("education-background.jpg");
+	background-repeat: no	-repeat;
+	background-position:center;
+	background-size:cover;
+	position:relative;
+}
+h1{
+   text-align:center;   
+   font-weight: 430;
+   color:black;
+   
+}
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.login-box {
+	background-color:white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin: 10px;
+	opacity:0.8;
+	position:absolute;
+	margin-bottom:90px;
+}
+#admin-username{
+    border-radius:20px;
+    width:280px;
+    box-shadow: 1px 2px 2px black;
+
+}
+#admin-password{
+    border-radius:20px;
+    width:280px;
+    box-shadow: 1px 2px 2px black;
+
+}
+.login-box h2 {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.input-group {
+	margin-bottom: 15px;
+	
+}
+
+.input-group label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.input-group input {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+button {
+    border-radius:20px;
+    width:80px;
+    margin-left:110px;
+	padding: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	box-shadow: 1px 2px 2px blue;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+.registration-link {
+	text-align: center;
+	margin-top: 20px;
+}
+p{
+   font-size: 14px;
+}
+</style>
+</head>
+<body>
+  
+   <h1> Welcome To Employee Management System</h1>
+	<div class="container">
+		<div class="login-box">
+			<h2>Admin Login</h2>
+			<form th:action="@{/admin/login}" th:object="${admin}" method="post">
+				<div class="input-group">
+					<label for="admin-username">Username</label> 
+					<input type="text" id="admin-username" name="admin-username" th:field="*{email}" required>
+				</div>
+				<div class="input-group">
+					<label for="admin-password">Password</label>
+					 <input type="password" id="admin-password" name="admin-password" th:field="*{password}" required>
+				</div>
+				<button type="submit">Login</button>
+			</form>
+			<p th:value="${message}"></p>
+			<div class="registration-link">
+				<p>
+					If you're a new admin, <a th:href="@{/new/admin}">register here</a>.
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

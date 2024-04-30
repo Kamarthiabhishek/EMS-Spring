@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Employee Registration</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<style type="text/css">
+body {
+	font-family: "Poppins", sans-serif;
+	margin: 0;
+	padding: 0;
+	background-image:url("https://socialsimulator.com/wp-content/uploads/2022/01/Digital-Comms-Planner-Template-2.jpg");
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:cover;
+}
+
+.container {
+	max-width: 400px;
+	margin: 50px auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	
+}
+
+h2 {
+	text-align: center;
+	margin-bottom: 20px;
+	color:black;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], select,
+	input[type="date"], input[type="file"] {
+	width: calc(100% - 22px); /* Adjust width to fit other input fields */
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+    
+	
+}
+
+button {
+	width: 100%;
+	padding: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+.error .alert {
+	color: red;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Employee Registration</h2>
+		<form th:action="@{/employee/register}" th:object="${employee}"
+			method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="first_name">First Name</label> 
+				<input type="text" class="form-control" id="first_name" placeholder="First Name"
+					th:field="*{first_name}">
+				<div th:if="${#fields.hasErrors('first_name')}"
+					th:errors="*{first_name}" class="alert alert-danger"></div>
+			</div>
+
+			<div class="form-group">
+				<label for="last_name">Last Name</label> <input type="text"
+					class="form-control" id="last_name" placeholder="Last Name"
+					th:field="*{last_name}">
+				<div th:if="${#fields.hasErrors('last_name')}"
+					th:errors="*{last_name}" class="alert alert-danger"></div>
+			</div>
+
+			<label for="gender">Gender:</label>
+			<select id="gender" name="gender" th:field="*{gender}">
+				<option value="Select Gender">Select Gender</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="Others">Others</option>
+			</select> 
+		
+			<div class="form-group">
+				<label for="email">Email</label> <input type="email"
+					class="form-control" id="email" placeholder="Email"
+					th:field="*{email}">
+				<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+					class="alert alert-danger"></div>
+			</div>
+			
+			<div class="form-group">
+			<label for="location">Location</label> 
+			<input type="text" id="location" name="location" placeholder="Location" th:field="*{location}"> 
+			<div th:if="${#fields.hasErrors('location')}" th:errors="*{location}"
+					class="alert alert-danger"></div>
+			</div>
+			<label for="dob">Date of Birth:</label> 
+			<input type="date" id="dob" th:field="*{dob}"
+				> 
+			
+			<div class="form-group">
+			<label for="contact">Contact:</label> 
+			<input type="tel" id="contact" name="contact" placeholder="Contact" th:field="*{contact}"
+				>
+				<div th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}"
+					class="alert alert-danger"></div>
+			</div>
+			
+			<div class="form-group">
+			<label for="salary">Salary:</label> 
+			<input type="tel" id="salary" name="salary" placeholder="Salary" th:field="*{salary}"
+				>
+				<div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"
+					class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+			<label for="designation">Designation:</label> 
+			<input type="text" id="designation" name="designation" placeholder="Designation" th:field="*{designation}"
+				>
+				<div th:if="${#fields.hasErrors('designation')}" th:errors="*{designation}"
+					class="alert alert-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="imageFile">Image:</label>
+				<input type="file" id="imageFile" name="imageFile" required><br><br>
+			</div>
+			<div th:if="${#fields.hasAnyErrors()}"
+				th:class="${#fields.hasAnyErrors()} ? 'error'">
+				<ul>
+					<li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+				</ul>
+			</div>
+			<button type="submit">Register</button>
+		</form>
+	</div>
+</body>
+</html>

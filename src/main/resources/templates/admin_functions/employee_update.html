@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update employee</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <style type="text/css">
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image:url("data:image/jpeg;base64,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");
+            background-repeat:no-repeat;
+            background-position:center;
+			background-size:cover;
+            
+        }
+
+        .container {
+            max-width: 400px;            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+           
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5spx;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        input[type="date"] {
+            width: calc(100% - 22px); /* Adjust width to fit other input fields */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 30%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left:130px;
+            
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error{
+        color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update employee </h2>
+        <form th:action="@{/employee/update}" th:object="${employee}" method="post">
+        	<input type="hidden" id="employee_id" th:field="*{employeeId}" /><br/>
+        	
+        	
+            <label for="employeeName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" th:field="*{first_name}" required>
+            
+            <label for="employeeName">Last Name:</label>
+            <input type="text" id="lastName" name="l	astName" th:field="*{last_name}" required>
+            
+			<label for="gender">Gender:</label>
+			<select id="gender" name="gender" th:field="*{gender}">
+				<option value="Select Gender">Select Gender</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="Other">Other</option>
+			</select> 
+		
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:field="*{email}" required>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" th:field="*{location}" required>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" th:field="*{dob}" required>
+            	
+            <label for="employeePhone">Phone:</label>
+            <input type="tel" id="employeePhone" name="employeePhone" th:field="*{contact}" required>
+            
+            <label for="employeePhone">Designation:</label>
+            <input type="tel" id="designation" name="designation" th:field="*{designation}" required>
+            <div th:if="${#fields.hasAnyErrors()}"
+				th:class="${#fields.hasAnyErrors()} ? 'error'">
+				<ul>
+					<li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+				</ul>
+			</div>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>
+	
